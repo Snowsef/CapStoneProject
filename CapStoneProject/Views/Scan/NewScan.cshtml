@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "New Scan";
+}
+
+<div class="text-center mt-5">
+    <h1>Sentry Network Scanner</h1>
+    <p class="lead">Enter a target IP to check for open ports.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4 shadow">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Target IPv4 Address</label>
+                    <input type="text" class="form-control" placeholder="192.168.1.1" required />
+                </div>
+                <button type="button" class="btn btn-danger w-100">Start Scan (Simulated)</button>
+            </form>
+        </div>
+    </div>
+</div>

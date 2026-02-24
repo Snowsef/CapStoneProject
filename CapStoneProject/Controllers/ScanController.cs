@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CapStoneProject.Data;   
+﻿using CapStoneProject.Data;   
 using CapStoneProject.Models; 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace CapStoneProject.Controllers
@@ -19,11 +20,21 @@ namespace CapStoneProject.Controllers
             return View();
         }
 
-        public IActionResult History()
+        public async Task<IActionResult> History(string searchString)
         {
-            // Simple check to see if we have data
-            var logs = _context.ScanLogs.OrderByDescending(l => l.ScanTimestamp).ToList();
-            return View(logs);
+           
+            var logs = from l in _context.ScanLogs
+                       select l;
+
+           
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                              
+                logs = logs.Where(s => s.TargetIPAddress.Contains(searchString)
+                                    || s.OpenPortsDetected.Contains(searchString));
+            }
+                       
+            return View(await logs.OrderByDescending(s => s.ScanTimestamp).ToListAsync());
         }
     }
 }

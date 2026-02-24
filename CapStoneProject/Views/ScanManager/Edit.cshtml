@@ -1,0 +1,49 @@
+﻿@model CapStoneProject.Models.ScanLog
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ScanLog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LogID" />
+            <div class="form-group">
+                <label asp-for="TargetIPAddress" class="control-label"></label>
+                <input asp-for="TargetIPAddress" class="form-control" />
+                <span asp-validation-for="TargetIPAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScanTimestamp" class="control-label"></label>
+                <input asp-for="ScanTimestamp" class="form-control" />
+                <span asp-validation-for="ScanTimestamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpenPortsDetected" class="control-label"></label>
+                <input asp-for="OpenPortsDetected" class="form-control" />
+                <span asp-validation-for="OpenPortsDetected" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScanDurationMs" class="control-label"></label>
+                <input asp-for="ScanDurationMs" class="form-control" />
+                <span asp-validation-for="ScanDurationMs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

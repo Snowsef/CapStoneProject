@@ -13,6 +13,10 @@
     <small class="text-muted">Enter partial IP (e.g., "192.168") to filter results.</small>
 </form>
 
+<div class="mb-3">
+    <a asp-controller="ScanManager" asp-action="Create" class="btn btn-success">Add Manual Audit</a>
+</div>
+
 <table class="table table-striped table-hover mt-3">
     <thead class="table-dark">
         <tr>
@@ -20,6 +24,7 @@
             <th>Target IP</th>
             <th>Date</th>
             <th>Open Ports</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -30,13 +35,19 @@
                 <td>@log.TargetIPAddress</td>
                 <td>@log.ScanTimestamp</td>
                 <td>@log.OpenPortsDetected</td>
+                <td>
+                    <a asp-controller="ScanManager" asp-action="Edit" asp-route-id="@log.LogID" class="btn btn-sm btn-warning">Edit</a> |
+                    <a asp-controller="ScanManager" asp-action="Delete" asp-route-id="@log.LogID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
         }
+
         <tr>
             <td>0</td>
             <td>127.0.0.1</td>
             <td>@DateTime.Now</td>
             <td>80, 443 (Demo)</td>
+            <td><span class="text-muted">Demo Only</span></td>
         </tr>
     </tbody>
 </table>
